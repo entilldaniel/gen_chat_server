@@ -1,7 +1,6 @@
 defmodule ServerChat.EntryServer do
   use GenServer
-  
-  alias Chat.Comm.Message
+
   alias Chat.Command.CommandDispatcher
 
   require Logger
@@ -52,7 +51,8 @@ defmodule ServerChat.EntryServer do
     case :gen_tcp.recv(socket, 0) do
       {:ok, data} ->
         command = Chat.Command.UserCommand.parse(data)
-        case CommandDispatcher.dispatch(socket, command) do
+
+        case CommandDispatcher.dispatch({socket,  ServerChat.SocketProxy}, command) do
           {:ok, _} -> {:stop, :normal}
           {:error, _} -> handle_connection(socket)
         end
@@ -63,5 +63,4 @@ defmodule ServerChat.EntryServer do
         {:error, reason}
     end
   end
-  
 end

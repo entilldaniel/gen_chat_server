@@ -1,21 +1,7 @@
-# Chat
+# Gen Chat Server
 
-**TODO: Add description**
+This is only a simple implementation of the library (gen_chat)[https://github.com/whalenut/gen_chat] that I'm working on.
+This project will soon be dropped as I'm not using this for anything specific other than as a helper project from when 
+I decided on refactoring gen_chat to be more of a lib.
 
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `chat` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:chat, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/chat](https://hexdocs.pm/chat).
-
+I plan on implementing this soonish on my own personal site just for fun.
