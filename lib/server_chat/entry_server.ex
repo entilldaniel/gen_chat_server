@@ -1,13 +1,14 @@
 defmodule ServerChat.EntryServer do
   use GenServer
 
-  alias Chat.Command.CommandDispatcher
+  alias GenChat.Command.{CommandDispatcher, UserCommand}
 
   require Logger
 
   defstruct [:listen_socket, :supervisor]
 
   def start_link([] = _opts) do
+    Logger.info("Starting gen server")
     GenServer.start_link(__MODULE__, :no_state)
   end
 
@@ -50,7 +51,7 @@ defmodule ServerChat.EntryServer do
   defp handle_connection(socket) do
     case :gen_tcp.recv(socket, 0) do
       {:ok, data} ->
-        command = Chat.Command.UserCommand.parse(data)
+        command = UserCommand.parse(data)
 
         case CommandDispatcher.dispatch({socket,  ServerChat.SocketProxy}, command) do
           {:ok, _} -> {:stop, :normal}

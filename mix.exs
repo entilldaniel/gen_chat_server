@@ -7,7 +7,8 @@ defmodule Chat.MixProject do
       version: "0.1.0",
       elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      aliases: aliases(),
     ]
   end
 
@@ -23,6 +24,12 @@ defmodule Chat.MixProject do
   defp deps do
     [
       {:gen_chat, path: "../gen_chat/"}
+    ]
+  end
+
+    defp aliases() do
+    [
+      update: ["deps.get", "deps.compile"]
     ]
   end
 end

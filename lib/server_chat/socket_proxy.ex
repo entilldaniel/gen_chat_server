@@ -1,5 +1,5 @@
 defmodule ServerChat.SocketProxy do
-  @behaviour Chat.Comm.DataProxy
+  @behaviour GenChat.Comm.DataProxy
 
   require Logger
 
@@ -9,8 +9,9 @@ defmodule ServerChat.SocketProxy do
   end
 
   def receive(channel) do
-    Logger.info("receiving")
-    :gen_tcp.recv(channel, 0, 10_000)
+    res = :gen_tcp.recv(channel, 0, 10_000)
+    IO.inspect(res)
+    res
   end
   
 end
